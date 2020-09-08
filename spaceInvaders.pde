@@ -1,36 +1,51 @@
 // SPACE INVADERS
-boolean w,a,s,d,space;
+//Sheild[] sheilds;
+Player p;
+shield[] shield;
+
 void setup(){
  size(1000,1000);
  background(0,0,0);
- keySetup();
+ p= new Player();
+ shield = new shield[1];
+ shield[0] = new shield(3,5);
+
+ 
 }
 
 void draw(){
+  clear();
+  p.draw();
 }
 
-void keyPressed(){
-  if(keyPressed == true){
- if(key=='w'|| key=='W'){
-   w=true;
- }
- if(key=='a'|| key=='A'){
-   a=true;
- }
- if(key=='s'|| key=='S'){
-   s=true;
- }
- if(key=='d'|| key=='D'){
-   d=true;
- }
- if(key == ' '){
-   space=true;
- }
- keySetup();
-}
+void keyPressed() {
+   if (key == 'a' || key == 'A'){
+      p.playerDirection(2);
+   }
+   
+   if (key == 'd' || key == 'D') {
+      p.playerDirection(1); 
+   }
+   
+   if (key == 'r') {
+      p.reset(); 
+   }
+   
+   if (key == ' '){
+      p.shoot(); 
+   }
 }
 
-
-void keySetup(){
-  w=false;a=false;s=false;d=false;space=false;
+void keyReleased() {
+  if (key == 'a' || key == 'A'){
+      p.playerDirection(0);
+   }
+   
+   if (key == 'd' || key == 'D') {
+      p.playerDirection(0); 
+   }
+   
+   if (key == ' ') {
+      p.allowShoot(); 
+   }
 }
